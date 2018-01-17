@@ -30,8 +30,9 @@ namespace Csla.Orleans.TestLocalHost
         static void Main(string[] args)
         {
             var currentDir = Path.Combine(Environment.CurrentDirectory, "bin/debug/netcoreapp2.0");
+            Environment.CurrentDirectory = currentDir;
             Console.WriteLine(Environment.CurrentDirectory);
-           // Environment.CurrentDirectory = currentDir;
+           
             MainAsync(args).Wait();
         }
 
