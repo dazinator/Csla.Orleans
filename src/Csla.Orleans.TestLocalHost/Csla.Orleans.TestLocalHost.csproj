@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\OrleansConfiguration.dev.xml" Link="OrleansConfiguration.dev.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />   
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Csla.Orleans.Tests.BusinessObjects\Csla.Orleans.Tests.BusinessObjects.csproj" />
+    <ProjectReference Include="..\Csla.Orleans\Csla.Orleans.csproj" />
+  </ItemGroup>
+
+</Project>

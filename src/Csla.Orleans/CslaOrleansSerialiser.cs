@@ -1,5 +1,6 @@
 ﻿using Csla.Core;
 using Csla.Serialization;
+using Csla.Serialization.Mobile;
 using Orleans.Serialization;
 using System;
 using System.IO;
@@ -18,9 +19,9 @@ namespace Csla.Orleans
 
         private readonly ISerializationFormatter _cslaSerializarionFormatter;
 
-        public CslaOrleansSerialiser(ISerializationFormatter serialiser)
+        public CslaOrleansSerialiser()
         {
-            _cslaSerializarionFormatter = serialiser;
+            _cslaSerializarionFormatter = SerializationFormatterFactory.GetFormatter();
         }
 
         public object DeepCopy(object source, ICopyContext context)
@@ -41,7 +42,10 @@ namespace Csla.Orleans
 
             using (var memoryStream = new MemoryStream(size))
             {
-                memoryStream.Write(context.StreamReader.ReadBytes(size), 0, size);
+                var bytes = context.StreamReader.ReadBytes(size);
+
+                memoryStream.Write(bytes, 0, bytes.Length);
+                memoryStream.Seek(0, SeekOrigin.Begin);
                 var deserialised = _cslaSerializarionFormatter.Deserialize(memoryStream);
                 return deserialised;
             }
@@ -50,7 +54,13 @@ namespace Csla.Orleans
         public bool IsSupportedType(Type itemType)
         {
             //_cslaSerializarionFormatter.
-            return itemType.IsSerializable;
+            if(!itemType.IsSerializable)
+            {
+                return false;
+            }
+
+            var hasInterface = itemType.GetInterface(nameof(IMobileObject));
+            return hasInterface != null;
         }
 
         public void Serialize(object item, ISerializationContext context, Type expectedType)

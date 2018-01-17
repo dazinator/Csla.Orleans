@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans", "Csla.Orlean
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans.Tests", "..\Csla.Orleans.Tests\Csla.Orleans.Tests.csproj", "{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans.TestLocalHost", "Csla.Orleans.TestLocalHost\Csla.Orleans.TestLocalHost.csproj", "{A4E9733D-CB19-4FDE-A1FB-1EED4E188003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans.Tests.BusinessObjects", "Csla.Orleans.Tests.BusinessObjects\Csla.Orleans.Tests.BusinessObjects.csproj", "{906C8972-06BE-470F-A66A-0CEBA2CAFF38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E9733D-CB19-4FDE-A1FB-1EED4E188003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E9733D-CB19-4FDE-A1FB-1EED4E188003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E9733D-CB19-4FDE-A1FB-1EED4E188003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E9733D-CB19-4FDE-A1FB-1EED4E188003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906C8972-06BE-470F-A66A-0CEBA2CAFF38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906C8972-06BE-470F-A66A-0CEBA2CAFF38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906C8972-06BE-470F-A66A-0CEBA2CAFF38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906C8972-06BE-470F-A66A-0CEBA2CAFF38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

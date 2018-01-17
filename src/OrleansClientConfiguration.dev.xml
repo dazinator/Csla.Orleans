@@ -4,7 +4,7 @@
             DataConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Orleans;Integrated Security=True;Pooling=False;Max Pool Size=200;Asynchronous Processing=True;MultipleActiveResultSets=True" AdoInvariant="System.Data.SqlClient" />
 
 
-  <GatewayProvider ProviderType="SqlServer"/>
+  <!--<GatewayProvider ProviderType="SqlServer"/>-->
 
   <!--<Messaging>
     <SerializationProviders>

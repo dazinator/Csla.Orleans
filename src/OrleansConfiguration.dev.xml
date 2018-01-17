@@ -1,21 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <OrleansConfiguration xmlns="urn:orleans">
   <Globals>
-    
-     <StorageProviders>
-      <Provider Type="Orleans.Storage.AdoNetStorageProvider"
-                Name="AdoNetStorage"
-                AdoInvariant="System.Data.SqlClient"
-                DataConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Orleans;Integrated Security=True;Pooling=False;Max Pool Size=200;Asynchronous Processing=True;MultipleActiveResultSets=True"
-                UseJsonFormat="true" />
-    </StorageProviders>
-    <!--Designated a primary grain as hosts membership table grain-->
-    <!--<SeedNode Address="localhost" Port="11111" /> 
-    <Liveness LivenessType ="MembershipTableGrain" />-->
-    <SystemStore SystemStoreType ="SqlServer"
-               DeploymentId="OrleansTest"
-               DataConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Orleans;Integrated Security=True;Pooling=False;Max Pool Size=200;Asynchronous Processing=True;MultipleActiveResultSets=True" AdoInvariant="System.Data.SqlClient" />
-    
+    <SeedNode Address="localhost" Port="11111" />
   </Globals>
   <Defaults>
     <Networking Address="localhost" Port="11111" />

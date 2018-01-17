@@ -3,15 +3,13 @@ using Csla.DataPortalClient;
 using Csla.Server;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Csla.Orleans
 {
     /// <summary>
-    /// Extension methods for ASP.NET Core configuration.
+    /// Extension methods Csla Configuration.
     /// </summary>
-    public static class WebConfiguration
+    public static class ServiceCollectionExtensions
     {
         /// <summary>
         /// Configure CSLA .NET options for ASP.NET Core.
@@ -56,7 +54,7 @@ namespace Csla.Orleans
 
                 // configure csla according to options.
                 Csla.Server.FactoryDataPortal.FactoryLoader = ObjectFactoryLoader;
-                Csla.DataPortal.ProxyFactory = DataPortalProxyFactory;
+                Csla.DataPortal.ProxyFactory = DataPortalProxyFactory ?? Csla.DataPortal.ProxyFactory;
                 // Csla.ApplicationContext.WebContextManager = WebContextManager ?? new ApplicationContextManager(appBuilder.ApplicationServices);
 
             }

@@ -4,6 +4,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="..\src\OrleansConfiguration.dev.xml" Link="OrleansConfiguration.dev.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
@@ -14,7 +20,12 @@
   </ItemGroup>
 
  <ItemGroup>
+   <ProjectReference Include="..\src\Csla.Orleans.Tests.BusinessObjects\Csla.Orleans.Tests.BusinessObjects.csproj" />
    <ProjectReference Include="..\src\Csla.Orleans\Csla.Orleans.csproj" />
+ </ItemGroup>
+
+ <ItemGroup>
+   <Folder Include="BusinessObjects\" />
  </ItemGroup>
 
 </Project>
