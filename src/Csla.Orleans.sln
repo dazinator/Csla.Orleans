@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans", "Csla.Orleans\Csla.Orleans.csproj", "{4B681C5F-D668-4473-BD09-9B181CEE674B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans.Tests", "..\Csla.Orleans.Tests\Csla.Orleans.Tests.csproj", "{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B681C5F-D668-4473-BD09-9B181CEE674B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B681C5F-D668-4473-BD09-9B181CEE674B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B681C5F-D668-4473-BD09-9B181CEE674B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B681C5F-D668-4473-BD09-9B181CEE674B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE7E7240-FAD7-4BA1-BC53-2AE7195E48DF}
+	EndGlobalSection
+EndGlobal

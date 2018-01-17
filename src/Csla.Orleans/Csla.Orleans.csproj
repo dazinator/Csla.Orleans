@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\OrleansClientConfiguration.dev.xml" Link="OrleansClientConfiguration.dev.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CSLA-Core" Version="4.7.100-Beta-17120701" />
+    <PackageReference Include="Microsoft.Orleans.Core" Version="2.0.0-beta3" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.0.0-beta3" />
+  </ItemGroup>
+
+</Project>
