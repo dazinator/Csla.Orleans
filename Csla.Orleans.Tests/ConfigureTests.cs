@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.ApplicationParts;
+using Orleans.CodeGeneration;
 using Orleans.Runtime.Configuration;
 using System;
 using System.Reflection;
@@ -10,6 +11,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using static Csla.Orleans.ServiceCollectionExtensions;
+
+
+
+//[assembly: KnownAssembly("Csla")]
+//[assembly: KnownAssembly("Csla.Orleans.Tests.BusinessObjects")]
+//[assembly: KnownType(typeof(Root))]
 
 namespace Csla.Orleans.Tests
 {

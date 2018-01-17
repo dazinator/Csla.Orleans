@@ -4,16 +4,26 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.ApplicationParts;
+using Orleans.CodeGeneration;
 using Orleans.Hosting;
 using Orleans.Runtime.Configuration;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
+
+//[assembly:KnownAssembly("Csla")]
+//[assembly: KnownAssembly("Csla.Orleans.Tests.BusinessObjects")]
+//[assembly: Orleans.CodeGeneration.KnownType(typeof(Root))]
+
+
 namespace Csla.Orleans.TestLocalHost
 {
+    
+
     class Program
     {
         private static readonly ManualResetEvent _exitEvent = new ManualResetEvent(false);
