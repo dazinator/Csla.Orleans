@@ -20,24 +20,25 @@ namespace Csla.Orleans
             return base.OnActivateAsync();
         }
 
-        public Task<DataPortalResult> Create(Type objectType, object criteria, DataPortalContext context, bool isSync)
+        public async Task<DataPortalResult> Create(Type objectType, object criteria, DataPortalContext context, bool isSync)
         {
-            return DataPortal.Create(objectType, criteria, context, isSync);
+            return await DataPortal.Create(objectType, criteria, context, isSync);
         }
 
-        public Task<DataPortalResult> Delete(Type objectType, object criteria, DataPortalContext context, bool isSync)
+        public async Task<DataPortalResult> Delete(Type objectType, object criteria, DataPortalContext context, bool isSync)
         {
-            return DataPortal.Delete(objectType, criteria, context, isSync);
+            return await DataPortal.Delete(objectType, criteria, context, isSync);
         }
 
-        public Task<DataPortalResult> Fetch(Type objectType, object criteria, DataPortalContext context, bool isSync)
+        public async Task<DataPortalResult> Fetch(Type objectType, object criteria, DataPortalContext context, bool isSync)
         {
-            return DataPortal.Fetch(objectType, criteria, context, isSync);
+            return await DataPortal.Fetch(objectType, criteria, context, isSync);
         }
 
-        public Task<DataPortalResult> Update(object obj, DataPortalContext context, bool isSync)
+        public async Task<DataPortalResult> Update(object obj, DataPortalContext context, bool isSync)
         {
-            return DataPortal.Update(obj, context, isSync);
+            var result = await DataPortal.Update(obj, context, isSync);
+            return result;
         }
     }
 }
