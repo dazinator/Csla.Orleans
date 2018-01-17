@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Csla.Orleans.Tests.BusinessObjects;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Orleans;
@@ -71,6 +72,8 @@ namespace Csla.Orleans.TestLocalHost
         {
             partManger.AddApplicationPart(typeof(IOrleansGrainDataPortalServer).Assembly);
             partManger.AddApplicationPart(typeof(Program).Assembly);
+            partManger.AddApplicationPart(typeof(Root).Assembly);
+            partManger.AddApplicationPart(typeof(Csla.ApplicationContext).Assembly);
         }
 
         private static IServiceProvider ConfigureServices(IServiceCollection services)

@@ -109,10 +109,10 @@ namespace Csla.Orleans.Tests.BusinessObjects
             Csla.ApplicationContext.GlobalContext.Add("Root", "Deleted");
         }
 
-        protected override void OnDeserialized(System.Runtime.Serialization.StreamingContext context)
-        {
-            Csla.ApplicationContext.GlobalContext.Add("Deserialized", "root Deserialized");
-        }
+        //protected override void OnDeserialized(System.Runtime.Serialization.StreamingContext context)
+        //{
+        //    Csla.ApplicationContext.GlobalContext.Add("Deserialized", "root Deserialized");
+        //}
 
         protected override void DataPortal_OnDataPortalInvoke(DataPortalEventArgs e)
         {
