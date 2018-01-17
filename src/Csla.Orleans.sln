@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans", "Csla.Orleans\Csla.Orleans.csproj", "{4B681C5F-D668-4473-BD09-9B181CEE674B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Csla.Orleans", "Csla.Orleans\Csla.Orleans.csproj", "{4B681C5F-D668-4473-BD09-9B181CEE674B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans.Tests", "..\Csla.Orleans.Tests\Csla.Orleans.Tests.csproj", "{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Csla.Orleans.Tests", "..\Csla.Orleans.Tests\Csla.Orleans.Tests.csproj", "{733217FC-90CC-4C76-A4F8-7B0CDC4284BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans.TestLocalHost", "Csla.Orleans.TestLocalHost\Csla.Orleans.TestLocalHost.csproj", "{A4E9733D-CB19-4FDE-A1FB-1EED4E188003}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Csla.Orleans.TestLocalHost", "Csla.Orleans.TestLocalHost\Csla.Orleans.TestLocalHost.csproj", "{A4E9733D-CB19-4FDE-A1FB-1EED4E188003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Csla.Orleans.Tests.BusinessObjects", "Csla.Orleans.Tests.BusinessObjects\Csla.Orleans.Tests.BusinessObjects.csproj", "{906C8972-06BE-470F-A66A-0CEBA2CAFF38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Csla.Orleans.Tests.BusinessObjects", "Csla.Orleans.Tests.BusinessObjects\Csla.Orleans.Tests.BusinessObjects.csproj", "{906C8972-06BE-470F-A66A-0CEBA2CAFF38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

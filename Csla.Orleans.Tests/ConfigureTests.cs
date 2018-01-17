@@ -87,7 +87,7 @@ namespace Csla.Orleans.Tests
             IClusterClient client = new ClientBuilder()
                .ConfigureApplicationParts(ConfigureApplicationParts)
                .ConfigureLogging(ConfigureLogging)
-               .UseConfiguration(config)
+               .UseConfiguration(config)               
                .UseServiceProviderFactory(ConfigureServices)
                .Build();
 
