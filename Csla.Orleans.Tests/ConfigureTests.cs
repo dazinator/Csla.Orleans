@@ -58,6 +58,26 @@ namespace Csla.Orleans.Tests
 
         }
 
+        [Fact]
+        public async Task Can_Create()
+        {
+
+            var services = new ServiceCollection();
+
+            IClusterClient orleansClient = GetClient();
+            var proxyFactory = new OrlansGrainDataPortalProxyFactory((t) => { return orleansClient; });
+            services.ConfigureCsla((a, b) => { a.DataPortalProxyFactory = proxyFactory; });
+            var sp = services.BuildServiceProvider();
+
+            var configuredCslaOptions = sp.GetRequiredService<CslaOptions>();
+
+            var root = Root.NewRoot();
+            root.Data = "ya";
+            root = await root.SaveAsync();
+            Assert.Equal("ya", root.Data);
+
+        }
+
         private IClusterClient GetClient()
         {
             //  var config = ClientConfiguration.LoadFromFile("OrleansClientConfiguration.dev.xml");
