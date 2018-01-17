@@ -24,8 +24,4 @@
    <ProjectReference Include="..\src\Csla.Orleans\Csla.Orleans.csproj" />
  </ItemGroup>
 
- <ItemGroup>
-   <Folder Include="BusinessObjects\" />
- </ItemGroup>
-
 </Project>

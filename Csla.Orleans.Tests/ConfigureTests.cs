@@ -99,6 +99,7 @@ namespace Csla.Orleans.Tests
         {
             partManger.AddApplicationPart(typeof(IOrleansGrainDataPortalServer).Assembly);
             partManger.AddApplicationPart(typeof(ConfigureTests).Assembly);
+            partManger.AddApplicationPart(typeof(Root).Assembly);
         }
 
         private static IServiceProvider ConfigureServices(IServiceCollection services)
