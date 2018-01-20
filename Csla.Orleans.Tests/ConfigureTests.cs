@@ -1,11 +1,16 @@
 ﻿using Csla.Orleans.Tests.BusinessObjects;
+using Csla.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.ApplicationParts;
 using Orleans.CodeGeneration;
 using Orleans.Runtime.Configuration;
+using Orleans.Serialization;
+using Serilog;
+using Serilog.Events;
 using System;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +28,7 @@ namespace Csla.Orleans.Tests
     public class ConfigureTests
     {
 
-        private static readonly ManualResetEvent _serverStartedEvent = new ManualResetEvent(false);      
+        private static readonly ManualResetEvent _serverStartedEvent = new ManualResetEvent(false);
 
         public ConfigureTests()
         {
@@ -65,6 +70,44 @@ namespace Csla.Orleans.Tests
 
         }
 
+
+        [Fact]
+        public async Task Can_Serialise_and_Deserialise()
+        {
+
+            var services = new ServiceCollection();
+
+            IClusterClient orleansClient = GetClient();
+            var proxyFactory = new OrlansGrainDataPortalProxyFactory((t) => { return orleansClient; });
+            services.ConfigureCsla((a, b) => { a.DataPortalProxyFactory = proxyFactory; });
+            var sp = services.BuildServiceProvider();
+
+            var configuredCslaOptions = sp.GetRequiredService<CslaOptions>();
+
+            var root = Root.NewRoot();
+            root.Data = "ya";
+
+            var logger = orleansClient.ServiceProvider.GetRequiredService<ILogger<CslaOrleansSerialiser>>();
+
+            var formatter = SerializationFormatterFactory.GetFormatter();
+
+            // var serialiser = new CslaOrleansSerialiser(logger);
+
+
+            using (var memoryStream = new MemoryStream())
+            {
+                formatter.Serialize(memoryStream, root);
+
+                memoryStream.Position = 0;
+                var result = formatter.Deserialize(memoryStream);
+            
+                var newRoot = result as Root;
+
+                Assert.NotNull(newRoot);              
+            }         
+
+        }
+
         [Fact]
         public async Task Can_Create()
         {
@@ -79,11 +122,14 @@ namespace Csla.Orleans.Tests
             var configuredCslaOptions = sp.GetRequiredService<CslaOptions>();
 
             var root = Root.NewRoot();
-            root.Data = "ya";
+            root.Data = "ya";          
             root = await root.SaveAsync();
             Assert.Equal("ya", root.Data);
 
+
+
         }
+
 
         private IClusterClient GetClient()
         {
@@ -94,7 +140,7 @@ namespace Csla.Orleans.Tests
             IClusterClient client = new ClientBuilder()
                .ConfigureApplicationParts(ConfigureApplicationParts)
                .ConfigureLogging(ConfigureLogging)
-               .UseConfiguration(config)               
+               .UseConfiguration(config)
                .UseServiceProviderFactory(ConfigureServices)
                .Build();
 
@@ -120,7 +166,16 @@ namespace Csla.Orleans.Tests
 
         private static void ConfigureLogging(ILoggingBuilder loggingBuilder)
         {
+
+            Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Debug()
+        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+        .Enrich.FromLogContext()
+        .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+        .CreateLogger();
+
             loggingBuilder.AddConsole();
+            loggingBuilder.AddSerilog();
         }
 
 

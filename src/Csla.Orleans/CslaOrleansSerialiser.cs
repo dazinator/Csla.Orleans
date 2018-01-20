@@ -53,7 +53,8 @@ namespace Csla.Orleans
                     var bytes = context.StreamReader.ReadBytes(size);
 
                     memoryStream.Write(bytes, 0, bytes.Length);
-                    memoryStream.Seek(0, SeekOrigin.Begin);
+                    memoryStream.Position = 0;
+                   // memoryStream.Seek(0, SeekOrigin.Begin);
                     var deserialised = _cslaSerializarionFormatter.Deserialize(memoryStream);
                     return deserialised;
                 }

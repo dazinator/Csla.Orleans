@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CSLA-Core" Version="4.7.100-Beta-17120701" />
+    <PackageReference Include="Serilog" Version="2.6.0" />
   </ItemGroup>
 </Project>
