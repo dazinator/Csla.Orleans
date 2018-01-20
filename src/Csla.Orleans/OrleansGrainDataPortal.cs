@@ -42,6 +42,15 @@ namespace Csla.Orleans
         {
             try
             {
+                //if(context.Principal == null)
+                //{
+                //    var p = new Csla.Security.UnauthenticatedPrincipal();
+                //    System.Threading.Thread.CurrentPrincipal = p;
+                //}
+
+               
+                _logger.LogInformation("DataPortal_Update for principal: " + context.Principal?.Identity?.Name);
+              
                 var result = await DataPortal.Update(obj, context, isSync);
                 return result;
             }

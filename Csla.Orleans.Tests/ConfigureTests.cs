@@ -137,6 +137,8 @@ namespace Csla.Orleans.Tests
 
             var root = Root.NewRoot();
             root.Data = "ya";
+
+            Csla.ApplicationContext.User = new Csla.Security.UnauthenticatedPrincipal();
             root = await root.SaveAsync();
             Assert.Equal("ya", root.Data);
 
