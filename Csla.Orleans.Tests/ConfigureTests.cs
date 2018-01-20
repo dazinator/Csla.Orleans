@@ -97,14 +97,28 @@ namespace Csla.Orleans.Tests
             using (var memoryStream = new MemoryStream())
             {
                 formatter.Serialize(memoryStream, root);
+                memoryStream.Position = 0;
+
+                var originalBytes = memoryStream.ToArray();
+                var bwriter = new BinaryTokenStreamWriter();
+                bwriter.Write(originalBytes);
+
+
+                var reader = new BinaryTokenStreamReader(bwriter.ToByteArray());
+                var binaryReadBytes = reader.ReadBytes(originalBytes.Length);
+
+                Assert.Equal(originalBytes, binaryReadBytes);
 
                 memoryStream.Position = 0;
                 var result = formatter.Deserialize(memoryStream);
-            
+
                 var newRoot = result as Root;
 
-                Assert.NotNull(newRoot);              
-            }         
+                Assert.NotNull(newRoot);
+            }
+
+
+
 
         }
 
@@ -122,7 +136,7 @@ namespace Csla.Orleans.Tests
             var configuredCslaOptions = sp.GetRequiredService<CslaOptions>();
 
             var root = Root.NewRoot();
-            root.Data = "ya";          
+            root.Data = "ya";
             root = await root.SaveAsync();
             Assert.Equal("ya", root.Data);
 

@@ -40,7 +40,7 @@ namespace Csla.Orleans
             try
             {
                 _logger.LogInformation("Deserialising: {name}", expectedType?.Name ?? "{null expetced type}");
-                var size = context.StreamReader.ReadInt();
+                var size = context.StreamReader.ReadLong();
 
                 _logger.LogInformation("Size {size}", size);
                 if (size == 0)
@@ -48,10 +48,9 @@ namespace Csla.Orleans
                     return null;
                 }
 
-                using (var memoryStream = new MemoryStream(size))
+                using (var memoryStream = new MemoryStream((int)size))
                 {
-                    var bytes = context.StreamReader.ReadBytes(size);
-
+                    var bytes = context.StreamReader.ReadBytes((int)size);  
                     memoryStream.Write(bytes, 0, bytes.Length);
                     memoryStream.Position = 0;
                    // memoryStream.Seek(0, SeekOrigin.Begin);

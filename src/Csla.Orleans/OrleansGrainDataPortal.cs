@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Csla.Server;
+using Microsoft.Extensions.Logging;
 using Orleans;
 
 namespace Csla.Orleans
 {
     public class OrleansGrainDataPortal : Grain, IOrleansGrainDataPortalServer
     {
-        public OrleansGrainDataPortal()
+        private readonly ILogger<OrleansGrainDataPortal> _logger;
+
+        public OrleansGrainDataPortal(ILogger<OrleansGrainDataPortal> logger)
         {
-           
+            _logger = logger;
         }
 
         public Server.DataPortal DataPortal { get; set; }
@@ -37,8 +40,17 @@ namespace Csla.Orleans
 
         public async Task<DataPortalResult> Update(object obj, DataPortalContext context, bool isSync)
         {
-            var result = await DataPortal.Update(obj, context, isSync);
-            return result;
+            try
+            {
+                var result = await DataPortal.Update(obj, context, isSync);
+                return result;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Csla dataportal update error.");
+                throw;
+            }
+
         }
     }
 }
