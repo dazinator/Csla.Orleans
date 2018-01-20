@@ -15,6 +15,7 @@
     <PackageReference Include="Microsoft.Orleans.Core" Version="2.0.0-beta3" />
     <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.0.0-beta3" />
     <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.0-beta3" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
   </ItemGroup>
 
 </Project>

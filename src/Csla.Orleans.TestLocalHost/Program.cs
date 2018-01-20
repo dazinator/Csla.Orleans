@@ -7,6 +7,8 @@ using Orleans.ApplicationParts;
 using Orleans.CodeGeneration;
 using Orleans.Hosting;
 using Orleans.Runtime.Configuration;
+using Serilog;
+using Serilog.Events;
 using System;
 using System.IO;
 using System.Reflection;
@@ -35,7 +37,15 @@ namespace Csla.Orleans.TestLocalHost
 
         private static void ConfigureLogging(ILoggingBuilder loggingBuilder)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .Enrich.FromLogContext()
+            .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
             loggingBuilder.AddConsole();
+            loggingBuilder.AddSerilog();
         }
 
         static void Main(string[] args)
