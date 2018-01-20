@@ -73,53 +73,26 @@ namespace Csla.Orleans.Tests
 
         [Fact]
         public async Task Can_Serialise_and_Deserialise()
-        {
-
-            var services = new ServiceCollection();
-
-            IClusterClient orleansClient = GetClient();
-            var proxyFactory = new OrlansGrainDataPortalProxyFactory((t) => { return orleansClient; });
-            services.ConfigureCsla((a, b) => { a.DataPortalProxyFactory = proxyFactory; });
-            var sp = services.BuildServiceProvider();
-
-            var configuredCslaOptions = sp.GetRequiredService<CslaOptions>();
+        {      
 
             var root = Root.NewRoot();
             root.Data = "ya";
-
-            var logger = orleansClient.ServiceProvider.GetRequiredService<ILogger<CslaOrleansSerialiser>>();
-
-            var formatter = SerializationFormatterFactory.GetFormatter();
-
-            // var serialiser = new CslaOrleansSerialiser(logger);
-
+                     
+            var formatter = SerializationFormatterFactory.GetFormatter();       
 
             using (var memoryStream = new MemoryStream())
             {
                 formatter.Serialize(memoryStream, root);
                 memoryStream.Position = 0;
 
-                var originalBytes = memoryStream.ToArray();
-                var bwriter = new BinaryTokenStreamWriter();
-                bwriter.Write(originalBytes);
-
-
-                var reader = new BinaryTokenStreamReader(bwriter.ToByteArray());
-                var binaryReadBytes = reader.ReadBytes(originalBytes.Length);
-
-                Assert.Equal(originalBytes, binaryReadBytes);
+                var originalBytes = memoryStream.ToArray();                    
 
                 memoryStream.Position = 0;
                 var result = formatter.Deserialize(memoryStream);
 
                 var newRoot = result as Root;
-
                 Assert.NotNull(newRoot);
             }
-
-
-
-
         }
 
         [Fact]
