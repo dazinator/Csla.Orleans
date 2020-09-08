@@ -5,16 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\OrleansClientConfiguration.dev.xml" Link="OrleansClientConfiguration.dev.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="CSLA-Core" Version="4.7.100-Beta-17120701" />
-    <PackageReference Include="Microsoft.Orleans.Core" Version="2.0.0-beta3" />
-    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="2.0.0-beta3" />
-    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.0-beta3" />
+	  
+    <PackageReference Include="Microsoft.Orleans.Core" Version="3.2.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.2.2" />
+	<PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.2.2" />
+    <!--<PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.2.2" />-->
     <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
   </ItemGroup>
 

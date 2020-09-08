@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Csla.Orleans.TestLocalHost": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

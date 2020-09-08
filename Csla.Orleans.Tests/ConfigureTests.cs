@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.ApplicationParts;
 using Orleans.CodeGeneration;
+using Orleans.Configuration;
 using Orleans.Runtime.Configuration;
 using Orleans.Serialization;
 using Serilog;
@@ -73,19 +74,19 @@ namespace Csla.Orleans.Tests
 
         [Fact]
         public async Task Can_Serialise_and_Deserialise()
-        {      
+        {
 
             var root = Root.NewRoot();
             root.Data = "ya";
-                     
-            var formatter = SerializationFormatterFactory.GetFormatter();       
+
+            var formatter = SerializationFormatterFactory.GetFormatter();
 
             using (var memoryStream = new MemoryStream())
             {
                 formatter.Serialize(memoryStream, root);
                 memoryStream.Position = 0;
 
-                var originalBytes = memoryStream.ToArray();                    
+                var originalBytes = memoryStream.ToArray();
 
                 memoryStream.Position = 0;
                 var result = formatter.Deserialize(memoryStream);
@@ -122,16 +123,24 @@ namespace Csla.Orleans.Tests
 
         private IClusterClient GetClient()
         {
-            //  var config = ClientConfiguration.LoadFromFile("OrleansClientConfiguration.dev.xml");
-            var config = ClientConfiguration.LocalhostSilo(30000);
-            config.SerializationProviders.Add(typeof(CslaOrleansSerialiser).GetTypeInfo());
 
-            IClusterClient client = new ClientBuilder()
-               .ConfigureApplicationParts(ConfigureApplicationParts)
-               .ConfigureLogging(ConfigureLogging)
-               .UseConfiguration(config)
-               .UseServiceProviderFactory(ConfigureServices)
-               .Build();
+            var client = new ClientBuilder()
+                    .ConfigureLogging(ConfigureLogging)
+                    // Clustering information
+                    .Configure<ClusterOptions>(options =>
+                    {
+                        options.ClusterId = OrleansClusterInfo.ClusterId.Value;
+                        options.ServiceId = OrleansClusterInfo.ServiceId;
+                    })
+                    .Configure<SerializationProviderOptions>(a => a.SerializationProviders.Add(typeof(CslaOrleansSerialiser).GetTypeInfo()))
+                    .UseLocalhostClustering()
+
+                    // Clustering provider
+                    // .UseAzureStorageClustering(options => options.ConnectionString = connectionString)
+                    // Application parts: just reference one of the grain interfaces that we use
+                    .ConfigureApplicationParts(ConfigureApplicationParts)
+                    .ConfigureServices(ConfigureServices)
+                    .Build();
 
             // Orleans clients are designed to be built once, and then a single instance used application wide, across many threads.
             return client;
@@ -145,12 +154,12 @@ namespace Csla.Orleans.Tests
             partManger.AddApplicationPart(typeof(Csla.ApplicationContext).Assembly);
         }
 
-        private static IServiceProvider ConfigureServices(IServiceCollection services)
+        private static void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
             services.AddLogging();
 
-            return services.BuildServiceProvider();
+            //return services.BuildServiceProvider();
         }
 
         private static void ConfigureLogging(ILoggingBuilder loggingBuilder)
@@ -166,7 +175,6 @@ namespace Csla.Orleans.Tests
             loggingBuilder.AddConsole();
             loggingBuilder.AddSerilog();
         }
-
 
     }
 }

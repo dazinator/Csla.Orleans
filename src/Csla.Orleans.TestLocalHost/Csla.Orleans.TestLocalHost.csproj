@@ -2,19 +2,27 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="..\OrleansConfiguration.dev.xml" Link="OrleansConfiguration.dev.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<PropertyGroup>
+		<!--https://dotnet.github.io/orleans/Documentation/clusters_and_clients/configuration_guide/configuring_.NET_garbage_collection.html-->
+		<ServerGarbageCollection>true</ServerGarbageCollection>
+		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.0-beta3" />
+  <ItemGroup>   
+
+	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
+	  <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.8" />
+	  
+	  <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.2.2" />
+	  <PackageReference Include="Microsoft.Orleans.OrleansProviders" Version="3.2.2" />
+	  <PackageReference Include="Microsoft.Orleans.Persistence.AzureStorage" Version="3.2.2" />
+	  
+	  
+	<PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.2.2" />
+    <!--<PackageReference Include="Microsoft.Orleans.OrleansCodeGenerator.Build" Version="2.0.0-beta3" />-->
     <PackageReference Include="Serilog" Version="2.6.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />   
   </ItemGroup>

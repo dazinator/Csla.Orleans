@@ -20,8 +20,6 @@ namespace Csla.Orleans
         protected async virtual Task<IOrleansGrainDataPortalServer> GetProxy(Type objectType)
         {
             await _client.Connect();
-
-            //  var imageName = "Windows Server 2012 R2";
             var grain = _client.GetGrain<IOrleansGrainDataPortalServer>(0);
             return grain;
         }
